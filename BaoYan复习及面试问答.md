@@ -114,11 +114,134 @@ $$
 
 ### 2.2 离散随机变量及分布
 
+- 两点分布（01分布）$X \thicksim B(1, p)$
+
+$$
+P(X = 0) = 1 - p \\
+P(X = 1) = p \\
+p \in (0,1)
+$$
+
+- 二项分布（伯努利分布）$X \thicksim B(n, p)$
+
+$$
+P(X = k) = C_n^k p^k (1 - p)^{n - k} \hspace{1em} p \in (0,1), k = 0,1,2,\cdots, n
+$$
+
+- 泊松分布 $X \thicksim P(\lambda)$
+
+$$
+P(X = k) = \frac{\lambda ^ k e ^{- \lambda}}{k!} \hspace{1em} \lambda \gt 0, k = 0,1,2,\cdots
+$$
+
+- 几何分布 $X \thicksim G(p)$
+
+$$
+P(X = k) = (1 - p) ^ {k - 1} p \hspace{1em} p \in (0, 1), k = 1, 2, \cdots
+$$
+
+- 超几何分布 $X \thicksim h(n, N, M)$
+
+$N$个产品，$M$个次品，从中无放回随机抽取$n$个，不合格数$X$服从超几何分布
+$$
+P(X = k) = \frac{C_{N - M} ^ {n - k}C_M^k}{C_N ^ n}
+$$
+
 ### 2.3 连续随机变量及分布
+
+- 均匀分布 $X \thicksim U(a, b)$
+
+$$
+f(x) = 
+\begin{cases}
+\frac{1}{b - a}, & a \le x \le b \\
+0, &其他
+\end{cases}
+$$
+
+- 指数分布 $X \thicksim E(\lambda)$
+
+$$
+f(x) = 
+\begin{cases}
+\lambda e ^{-\lambda x}, & x \gt 0 \\
+0, &其他
+\end{cases}
+$$
+
+- 正态分布（高斯分布）$X \thicksim N(\mu, \sigma ^ 2)$
+
+$$
+f(x) = \frac{1}{\sqrt{2 \pi} \sigma} \huge{e} ^ {\Large{- \frac{(x - \mu) ^ 2}{2 \sigma ^ 2}}}
+$$
+
+标准正态分布 $X \thicksim N(0, 1)$
 
 ### 2.4 随机变量数字特征
 
+- 数学期望
+
+离散分布的数学期望：
+
+1. 两点分布 $p$
+
+2. 二项分布 $np$
+
+3. 泊松分布 $\lambda$
+
+4. 几何分布 $\frac{1}{p}$
+
+连续分布的数学期望：
+$$
+E(X) = \int _{-\infin}^{+ \infin} xf(x) dx
+$$
+
+1. 均匀分布 $\frac{a + b}{2}$
+2. 指数分布 $\frac{1}{\lambda}$
+3. 正态分布 $\mu$
+
+- 方差
+
+$$
+D(X) = E[(X - E(X))^2] = E(X^2) - E^2(X)
+$$
+
+
+
+- 协方差
+
+$$
+Cov(X, Y) = E[(X - E[X])(Y - E[Y])] = E[XY] - E[X]E[Y]
+$$
+
+从数值来看，协方差的数值越大，两个变量同向程度也就越大。反之亦然。
+
+- 相关系数
+
+$$
+\rho_{_{XY}} = \frac{Cov(X, Y)}{\sqrt{D(X)} \sqrt{D(Y)}}
+$$
+
+- 独立、互斥、相关
+
 ### 2.5 大数定理和中心极限定理
+
+- 大数定理
+
+样本数量很大的时候，样本均值和数学期望充分接近，也就是说当我们大量重复某一相同的实验的时候，其最后的实验结果可能会稳定在某一数值附近。
+
+- 中心极限定理
+
+大量（$n \to \infin$）、独立、同分布的随机变量之和，近似服从于一维正态分布。
+
+### 2.6 参数估计
+
+求最大似然估计量 $\hat \theta$ 步骤：
+
+1. 写出似然函数
+2. 对似然函数取对数，整理
+3. 求导数
+4. 解似然方程
 
 ## 3 高数
 
@@ -138,7 +261,17 @@ $$
 
 ## 1 Linux
 
+### 1.1 基础命令
+
+### 1.2 Git
+
+### 1.3 Docker
+
+### 1.4 Shell
+
 ## 2 C/C++
+
+- 编译过程
 
 ## 3 Python
 
