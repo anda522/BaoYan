@@ -268,9 +268,79 @@ $$
 
 ## 3 高数
 
+### 3.1 可导可微可积连续
+
+- 对于一元函数，可导可微等价
+- 可导一定连续，连续不一定可导（绝对值函数，连续但不可导）
+
+### 3.2 中值定理
+
+- 罗尔中值定理
+
+$f(x)$在$[a, b]$内连续，在$(a, b)$内可导，$f(a) = f(b)$，则存在$\xi \in (a, b)$，使得$f{'}(\xi) = 0$ 
+
+- 拉格朗日中值定理
+
+$f(x)$在$[a, b]$内连续，在$(a, b)$内可导，则存在$\xi \in (a, b)$，使得$f{'}(\xi) = \frac{f(b) - f(a)}{b - a}$ 
+
+- 柯西中值定理
+
+$f(x),g(x)$在$[a, b]$内连续，在$(a, b)$内可导，且满足$g'(x) \neq 0 (a \lt x \lt b)$，则存在$\xi \in (a, b)$，使得$\frac{f'(\xi)}{g'(\xi)} = \frac{f(b) - f(a)}{g(b) - g(a)}$
+
+### 3.3 梯度和方向导数
+
+方向导数：
+$$
+对于f(x, y)在P(x_0, y_0)可微分，\frac{\partial f}{\partial l} \Bigg \vert _{(x_0, y_0)} = f_x(x_0, y_0) cos \alpha + f_y(x_0, y_0)cos \beta = (f_x(x_0, y_0), f_y(x_0, y_0)) \cdot (cos\alpha, cos\beta)
+$$
+当偏导向量和方向向量同向时，方向导数最大，那么把这个方向向量就叫做**函数在该点的梯度**。
+
+梯度是使得方向导数变化最大的方向向量。
+
+
+
+### 3.4 凹凸函数和琴生不等式
+
+凸函数：
+$$
+f(\frac{x_1 + x_2}{2}) > \frac{f(x_1) + f(x_2)}{2}
+$$
+凹函数：
+$$
+f(\frac{x_1 + x_2}{2}) < \frac{f(x_1) + f(x_2)}{2}
+$$
+
+
+### 3.5 偏导偏微全微
+
+- 偏导
+
+对于某一自变量的增量，对应有相应函数的增量，如果某自变量增量趋近于0时，极限存在，即为偏导数。
+$$
+\frac{\partial z}{\partial x} = \frac{\partial z}{\partial u} \frac{\partial u}{\partial x} + \frac{\partial z}{\partial v} \frac{\partial v}{\partial x}
+$$
+
+- 全微分
+
+$$
+对于 u= f(x, y, z) \hspace{1em}du = \frac{\partial u}{\partial x} dx +  \frac{\partial u}{\partial y} dy + \frac{\partial u}{\partial z} dz
+$$
+
+相互关系：
+
+偏导函数连续一定可微
+
+可微一定连续，可微一定偏导函数存在，可微一定沿任何方向导数均存在
+
+连续一定有极限
+
 
 
 ## 4 离散数学
+
+
+
+
 
 # 408
 
