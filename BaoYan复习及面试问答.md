@@ -1,5 +1,3 @@
-[toc]
-
 # BaoYan复习
 
 # 数学
@@ -601,19 +599,113 @@ https://wyqz.top/p/917541138.html
 ### 流程
 
 - 初始化函数
+
+打开继电器，吸附磁铁
+
 - 循环函数
 
-- 定时器中断
+当计数周期大于`3s`时，清除状态记录（坠物`3s`内一定会下落）
 
-设置`600ms`定时，如果热释电传感器为输入为`LOW`，需要重新开始计数：
+- 定时器中断（`600ms`定时器触发）
+
+如果热释电传感器为输入为`LOW`，需要重新开始计数，且：
 
 1. 大于阈值，触发
 2. 否则上次下降沿计数值更新为当前计数值
 
-- 外部中断
+- 外部中断（下降沿触发）
 
 1. 检测下降沿状态为`false` ：将其设置为`true`，计数清零，**开始定时器中断**
 2. 检测下降沿状态为`true` ：计数值加一
+
+```c
+#include <MsTimer2.h>
+
+//微波模块中断引脚=2 / int0
+const int pbIn = 0;
+//热释电传感器引脚
+const int pIR = 4;
+//继电器引脚1
+const int pRelay1 = 9;
+
+//计数变量
+int count = 0;
+//上一次计数结果
+int lastCnt = 0;
+//上一个计数时间
+unsigned long lastMills;
+//是否在检测下降沿
+bool isDetectingFalling = false;
+
+//清空计数周期(ms)
+#define MILLIS_INTERVAL 3*1000
+//计数阈值
+#define COUNT_MAX       25
+
+#define RELAY_ON LOW
+
+void setup()
+{
+	Serial.begin(115200);
+	//绑定中断
+	attachInterrupt(pbIn, IRQ0_Handler, FALLING);
+	//设定PINMODE
+	pinMode(pIR, INPUT);
+	pinMode(pRelay1, OUTPUT);
+	//初始化: 继电器开 
+	digitalWrite(pRelay1, RELAY_ON);
+	MsTimer2::set(600, MsTimer2_IRQ_Handler);
+}
+
+void loop()
+{
+	//清除上一个记录
+	if (millis() > lastMills + MILLIS_INTERVAL) {
+		lastCnt = 0;
+		lastMills = millis();
+		Serial.println("(!0y)");
+		//关继电器
+		digitalWrite(pRelay1, HIGH - RELAY_ON);
+	}
+}
+
+//外部中断
+void IRQ0_Handler()
+{
+	if (!isDetectingFalling) {
+		isDetectingFalling = true;
+		count = 0;
+		MsTimer2::start();
+	}
+	else {
+		count++;
+	}
+}
+
+//定时任务中断
+void MsTimer2_IRQ_Handler()
+{
+	if (digitalRead(pIR) == LOW) {
+		//取消下降沿计数
+		isDetectingFalling = false;
+		Serial.println(lastCnt + count);
+		//大于阈值, 触发
+		if (lastCnt + count > COUNT_MAX)
+		{
+			digitalWrite(pRelay1, RELAY_ON);
+			Serial.print("(!1z)");
+			lastCnt = 0;
+		}
+		else {
+			lastCnt = count;
+			lastMills = millis();
+		}
+		MsTimer2::stop();
+	}
+}
+```
+
+
 
 ## 3 科研：Yolov5
 
