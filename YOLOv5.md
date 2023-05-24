@@ -156,25 +156,26 @@ Loss=a\*lossobj+ b\*lossrect+ c\*lossclc
 > yolov5使用**CIOU loss**计算矩形框损失，置信度损失与分类损失都用**BCE loss**计算
 
 $$
-IoU = \frac{S_1}{S_2} \\
-IoU Loss = 1 - IoU
+IoU = \frac{A \cap B}{A \cup B} = \frac{S_1}{S_2} \\
+IoU \ Loss = 1 - IoU
 $$
 
 
 $$
 GIoU = IoU - \frac{S_3 - S_2}{S_3} \\
-GIoU Loss = 1 - GIoU
+GIoU \ Loss = 1 - GIoU
 $$
 
 
 
 
-> $S_3$ ：包围两个矩形框的最小矩形的面积， $S_2$ ：矩形相并的面积， 
+> $S_3$ ：包围两个矩形框的最小矩形的面积， $S_2$ ：矩形相并的面积，$S_1$：面积交 
 >
 > 当两个矩形框完全没有重叠区域时，无论它们距离多远，它们的IOU都为0。这种情况下梯度也为0，导致无法优化。为了解决这个问题，GIOU又被提了出来。
 
 $$
 DIoU = IoU - \frac{\rho ^ 2}{c ^ 2} \\
+\rho:矩形框A,B中心点的距离;c:最小外接矩形对角线的长度 \\
 DIoU Loss = 1 - DIoU
 $$
 
@@ -186,7 +187,7 @@ $$
 
 $$
 CIoU = IoU - \frac{\rho ^ 2}{c ^ 2} - \alpha v = DIoU - \alpha v \\
-v = \frac{4}{\pi ^ 2} \Big( \mathop{arctan} \frac{w_l}{h_l} - \mathop{arctan} \frac{w_p}{h_p} \Big) \\
+v = \frac{4}{\pi ^ 2} \Big( \mathop{arctan} \frac{w_{gt}}{h_{gt}} - \mathop{arctan} \frac{w_p}{h_p} \Big) \\
 CIoU Loss = 1 - CIoU
 $$
 
@@ -197,6 +198,12 @@ $$
 > ρ为框A和框B的中心点距离，c为框A和框B的最小包围矩形的对角线长度，v为框A、框B的宽高比相似度，α为v的影响因子
 >
 > $w_l, h_l$ 标注框的宽和高，$w_p, h_p$预测框的宽和高
+
+$$
+BCE \ Loss =
+$$
+
+
 
 
 
@@ -213,6 +220,15 @@ $$
 5. 平均精度均值（mAP）：是评估目标检测模型性能的一种重要指标，主要基于目标检测中每个类别的精度-召回曲线来计算。mAP越高，代表模型越准确。如COCO数据集中的mAP，PASCAL VOC中的mAP等。
 6. IoU（Intersection over Union）：是指检测框与真实框之间的相交面积占两者并集面积的比例，通常用于度量目标检测算法中物体定位准确性。当IoU值越高时，检测结果越准确
 
+
+$$
+ACC = \frac{TP + TN}{N_P + N_N}\\
+P = \frac{TP}{TP + FP} \\
+R = \frac{TP}{TP + FN} \\
+F1\_Score = 2 \times \frac{P \times R}{P + R} \\
+AP = \int_0^1 P(R) dR \\
+mAP = \frac{1}{n} \sum \limits_{i = 1}^{n} \int_0^1 P(R)dR
+$$
 
 
 # 缺陷
