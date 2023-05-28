@@ -178,6 +178,14 @@ https://zhuanlan.zhihu.com/p/266870455
 
 【西电211 rk5-10】夏令营以及各老师，很有用（中科大内容很多）：https://zhuanlan.zhihu.com/p/125517384
 
+## 7 厦大
+
+- 经验：
+
+【江西211  6/191、2/191】https://zhuanlan.zhihu.com/p/570092284
+
+MAC实验室
+
 ## - 其他
 
 - 2022 北理工进夏令营学校也鸽了
