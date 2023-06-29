@@ -461,8 +461,18 @@ MAC实验室
 4. 介绍你的家庭。
 5. 有什么爱好。
 6. 介绍你学过的一门专业课。
-7. 介绍项目中用到的一些方法。
+7. 介绍项目。
+
+Thank you for giving me the opportunity to introduce my project. The project I would like to talk about is a simple thread pool implementation using C++17.
+
+A thread pool is a commonly used technique in concurrent programming, where a group of threads are created and managed to efficiently execute a large number of tasks. In my implementation, I created a set of worker threads that are managed by a thread pool manager. The manager receives tasks from a task queue and assigns them to available worker threads, which then execute the tasks and return the results.
+
+One of the main benefits of using a thread pool is that it can significantly improve the performance of applications that perform many small or independent tasks. By reusing existing threads rather than creating new ones for each task, the overhead of thread creation is greatly reduced, resulting in faster overall execution times.
+
+Overall, I believe that a simple thread pool implementation can be a valuable tool for anyone developing concurrent applications in C++, and I'm excited to have had the opportunity to create one. Thank you for your time!
+
 8. 你对人工智能等问题的看法。
+
 9. 为什么要来我们学校。
 
 ## 2 数学
