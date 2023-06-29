@@ -36,9 +36,6 @@
 
 # 三、院校选择
 
-- 中科院计算所，姚建业2023进了
-- 北航 吴程程
-
 # 四、院校经验
 
 ## 1 北航
@@ -448,10 +445,16 @@ MAC实验室
 
 ## 1 英语
 
-- 相关问题
-  - 最喜欢的课程，为什么
-  - 为什么选择这个学校
-  - 在某项目中的工作是什么
+- 最喜欢的课程，为什么
+- 为什么选择这个学校 
+
+I am very interested in the university's strong academic reputation.（学术荣誉）
+
+I am also excited about the opportunity to learn from experienced members and engage with students who are passionate about their fields. （能够向有经验的人学习，以及和他们一起工作）
+
+Additionally, I believe that attending the summer camp at Beihang University would provide me with a unique and valuable experience that would help me grow both academically and personally.（北航夏令营给我一种独特有价值的体验，帮我在学术和个人上有成长）
+
+- 在某项目中的工作是什么
 
 - 文献翻译
 
@@ -463,13 +466,13 @@ MAC实验室
 6. 介绍你学过的一门专业课。
 7. 介绍项目。
 
-Thank you for giving me the opportunity to introduce my project. The project I would like to talk about is a simple thread pool implementation using C++17.
+Thank you for giving me the opportunity to introduce my project. The project I would like to talk about is a simple thread pool implementation using C++17.（介绍）
 
-A thread pool is a commonly used technique in concurrent programming, where a group of threads are created and managed to efficiently execute a large number of tasks. In my implementation, I created a set of worker threads that are managed by a thread pool manager. The manager receives tasks from a task queue and assigns them to available worker threads, which then execute the tasks and return the results.
+A thread pool is a used technique in concurrent programming, where **a group of threads are created and managed to execute a large number of tasks.** In my implementation, I created a set of worker threads that are managed by a thread pool manager. The manager receives tasks from a task queue and assigns them to available worker threads, which then execute the tasks and return the results.（过程）
 
-One of the main benefits of using a thread pool is that it can significantly improve the performance of applications that perform many small or independent tasks. By reusing existing threads rather than creating new ones for each task, the overhead of thread creation is greatly reduced, resulting in faster overall execution times.
+One of the main benefits of using a thread pool is that **it can improve the performance of applications**. （益处）
 
-Overall, I believe that a simple thread pool implementation can be a valuable tool for anyone developing concurrent applications in C++, and I'm excited to have had the opportunity to create one. Thank you for your time!
+Overall, I believe that a simple thread pool implementation can be a valuable tool for anyone developing concurrent applications in C++, and I'm excited to have the opportunity to create one. Thank you for your time!
 
 8. 你对人工智能等问题的看法。
 
