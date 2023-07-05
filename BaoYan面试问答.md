@@ -1,42 +1,8 @@
-# 一、材料准备
 
-## 1 套磁准备
 
-- [x] 套磁信
-- [ ] 寻找意向老师、意向院校
+# 
 
-## 2 夏令营书写材料
-
-- [x] 1000字自述、500字自述
-
-- [x] 研究生阶段科研规划
-- [x] 简历
-- [x] 推荐信
-
-## 3 整理材料
-
-- [x] 成绩单
-- [x] 排名证明
-- [x] 四六级证书
-- [x] 竞赛证书
-
-## 4 面试准备
-
-- [ ] 个人介绍中文、英文
-- [ ] 个人介绍PPT
-
-保研夏令营需要准备哪些申请材料？三步搞定！ - 保研圈的文章 - 知乎 https://zhuanlan.zhihu.com/p/479460182
-
-# 二、保研经验
-
-- 尽量使用夏令营wl去冲（低风险）
-- 成绩单加盖公章（五月份之前）
-- 导师评价网
-- 交叉学科可以捡漏
-
-# 三、院校选择
-
-# 四、院校经验
+# 一、院校问答
 
 ## 1 北航
 
@@ -441,7 +407,7 @@ MAC实验室
 - 南开网安弱com，专硕无宿舍，第一轮面试很重要基本就有结果，第二轮流程，无排名，老师单独面试为主
 - 中南夏令营预推免一起
 
-# 五、面试问题
+# 二、面试问答
 
 ## 1 英语
 
@@ -544,6 +510,153 @@ Overall, I believe that a simple thread pool implementation can be a valuable to
 ## 5 老师提问
 
 - 你还报了哪些学校
+
+# 三、项目科研
+
+## 1 项目：QQ机器人
+
+机器人称之为**协议端**
+
+协议端可以通过 http、websocket 等方式与之通信，这个通信往往是双向的：
+
+- 一方面，协议端可以上报数据给 NoneBot，NoneBot 会处理数据并返回响应给协议端；
+- 另一方面，NoneBot 可以主动推送数据给协议端。而 NoneBot 便是围绕双向通信进行工作的。
+
+倘若一个协议端与 NoneBot 进行了连接，NoneBot 的后端驱动 `Driver` 就会将数据交给 `Adapter`，然后会实例化 `Bot`，NoneBot 便会利用 `Bot` 开始工作，它的工作内容分为两个方面：
+
+1. **事件处理**，`Bot` 会将协议端上报的数据转化为 `Event`（事件），之后 NoneBot 会根据一套既定流程来处理事件。
+2. **调用 `API`**，在**事件处理**的过程中，NoneBot 可以通过 `Bot` 调用协议端指定的 `API` 来获取更多数据，或者反馈响应给协议端；NoneBot 也可以通过调用 `API` 向协议端主动请求数据或者主动推送数据。
+
+
+
+## 2 项目：高空坠物
+
+### 模块
+
+- 微波模块`pbIn`
+
+设置为外部中断模式，需要绑定外部中断
+
+- 热释电传感器模块`pIR`
+
+设置为输入模式
+
+- 继电器引脚`pRelay`
+
+设置为输出模式，`LOW`触发
+
+> 初始时继电器为打开状态，需要吸附磁铁
+
+### 流程
+
+- 初始化函数
+
+打开继电器，吸附磁铁
+
+- 循环函数
+
+当计数周期大于`3s`时，清除状态记录（坠物`3s`内一定会下落）
+
+- 定时器中断（`600ms`定时器触发）
+
+如果热释电传感器为输入为`LOW`，需要重新开始计数，且：
+
+1. 大于阈值，触发
+2. 否则上次下降沿计数值更新为当前计数值
+
+- 外部中断（下降沿触发）
+
+1. 检测下降沿状态为`false` ：将其设置为`true`，计数清零，**开始定时器中断**
+2. 检测下降沿状态为`true` ：计数值加一
+
+```c
+#include <MsTimer2.h>
+
+//微波模块中断引脚=2 / int0
+const int pbIn = 0;
+//热释电传感器引脚
+const int pIR = 4;
+//继电器引脚1
+const int pRelay1 = 9;
+
+//计数变量
+int count = 0;
+//上一次计数结果
+int lastCnt = 0;
+//上一个计数时间
+unsigned long lastMills;
+//是否在检测下降沿
+bool isDetectingFalling = false;
+
+//清空计数周期(ms)
+#define MILLIS_INTERVAL 3*1000
+//计数阈值
+#define COUNT_MAX       25
+
+#define RELAY_ON LOW
+
+void setup()
+{
+	Serial.begin(115200);
+	//绑定中断
+	attachInterrupt(pbIn, IRQ0_Handler, FALLING);
+	//设定PINMODE
+	pinMode(pIR, INPUT);
+	pinMode(pRelay1, OUTPUT);
+	//初始化: 继电器开 
+	digitalWrite(pRelay1, RELAY_ON);
+	MsTimer2::set(600, MsTimer2_IRQ_Handler);
+}
+
+void loop()
+{
+	//清除上一个记录
+	if (millis() > lastMills + MILLIS_INTERVAL) {
+		lastCnt = 0;
+		lastMills = millis();
+		Serial.println("(!0y)");
+		//关继电器
+		digitalWrite(pRelay1, HIGH - RELAY_ON);
+	}
+}
+
+//外部中断
+void IRQ0_Handler()
+{
+	if (!isDetectingFalling) {
+		isDetectingFalling = true;
+		count = 0;
+		MsTimer2::start();
+	}
+	else {
+		count++;
+	}
+}
+
+//定时任务中断
+void MsTimer2_IRQ_Handler()
+{
+	if (digitalRead(pIR) == LOW) {
+		//取消下降沿计数
+		isDetectingFalling = false;
+		Serial.println(lastCnt + count);
+		//大于阈值, 触发
+		if (lastCnt + count > COUNT_MAX)
+		{
+			digitalWrite(pRelay1, RELAY_ON);
+			Serial.print("(!1z)");
+			lastCnt = 0;
+		}
+		else {
+			lastCnt = count;
+			lastMills = millis();
+		}
+		MsTimer2::stop();
+	}
+}
+```
+
+
 
 
 

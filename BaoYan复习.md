@@ -1433,7 +1433,7 @@ Cache-主存地址映射：
 Cache替换策略：
 
 - 先进先出算法FIFO
-- 最近最少使用算法LRU
+- 最近最少使用算法LRU（Least Recently Unused）
 
 辅助存储器：
 
@@ -1488,7 +1488,7 @@ DMA与CPU冲突的处理方法（因为DMA和CPU共享主存）：
 
 参考：https://wyqz.top/p/808139430.html
 
-# 其它（技术）
+# 其它
 
 ## 1 Linux
 
@@ -1514,159 +1514,3 @@ DMA与CPU冲突的处理方法（因为DMA和CPU共享主存）：
 - 闭包、装饰器
 
 ## 4 Latex
-
-https://wyqz.top/p/917541138.html
-
-<div STYLE="page-break-after: always;"></div>
-
-# 项目和科研
-
-## 1 项目：QQ机器人
-
-机器人称之为**协议端**
-
-协议端可以通过 http、websocket 等方式与之通信，这个通信往往是双向的：
-
-- 一方面，协议端可以上报数据给 NoneBot，NoneBot 会处理数据并返回响应给协议端；
-- 另一方面，NoneBot 可以主动推送数据给协议端。而 NoneBot 便是围绕双向通信进行工作的。
-
-倘若一个协议端与 NoneBot 进行了连接，NoneBot 的后端驱动 `Driver` 就会将数据交给 `Adapter`，然后会实例化 `Bot`，NoneBot 便会利用 `Bot` 开始工作，它的工作内容分为两个方面：
-
-1. **事件处理**，`Bot` 会将协议端上报的数据转化为 `Event`（事件），之后 NoneBot 会根据一套既定流程来处理事件。
-2. **调用 `API`**，在**事件处理**的过程中，NoneBot 可以通过 `Bot` 调用协议端指定的 `API` 来获取更多数据，或者反馈响应给协议端；NoneBot 也可以通过调用 `API` 向协议端主动请求数据或者主动推送数据。
-
-
-
-## 2 项目：高空坠物
-
-### 模块
-
-- 微波模块`pbIn`
-
-设置为外部中断模式，需要绑定外部中断
-
-- 热释电传感器模块`pIR`
-
-设置为输入模式
-
-- 继电器引脚`pRelay`
-
-设置为输出模式，`LOW`触发
-
-> 初始时继电器为打开状态，需要吸附磁铁
-
-### 流程
-
-- 初始化函数
-
-打开继电器，吸附磁铁
-
-- 循环函数
-
-当计数周期大于`3s`时，清除状态记录（坠物`3s`内一定会下落）
-
-- 定时器中断（`600ms`定时器触发）
-
-如果热释电传感器为输入为`LOW`，需要重新开始计数，且：
-
-1. 大于阈值，触发
-2. 否则上次下降沿计数值更新为当前计数值
-
-- 外部中断（下降沿触发）
-
-1. 检测下降沿状态为`false` ：将其设置为`true`，计数清零，**开始定时器中断**
-2. 检测下降沿状态为`true` ：计数值加一
-
-```c
-#include <MsTimer2.h>
-
-//微波模块中断引脚=2 / int0
-const int pbIn = 0;
-//热释电传感器引脚
-const int pIR = 4;
-//继电器引脚1
-const int pRelay1 = 9;
-
-//计数变量
-int count = 0;
-//上一次计数结果
-int lastCnt = 0;
-//上一个计数时间
-unsigned long lastMills;
-//是否在检测下降沿
-bool isDetectingFalling = false;
-
-//清空计数周期(ms)
-#define MILLIS_INTERVAL 3*1000
-//计数阈值
-#define COUNT_MAX       25
-
-#define RELAY_ON LOW
-
-void setup()
-{
-	Serial.begin(115200);
-	//绑定中断
-	attachInterrupt(pbIn, IRQ0_Handler, FALLING);
-	//设定PINMODE
-	pinMode(pIR, INPUT);
-	pinMode(pRelay1, OUTPUT);
-	//初始化: 继电器开 
-	digitalWrite(pRelay1, RELAY_ON);
-	MsTimer2::set(600, MsTimer2_IRQ_Handler);
-}
-
-void loop()
-{
-	//清除上一个记录
-	if (millis() > lastMills + MILLIS_INTERVAL) {
-		lastCnt = 0;
-		lastMills = millis();
-		Serial.println("(!0y)");
-		//关继电器
-		digitalWrite(pRelay1, HIGH - RELAY_ON);
-	}
-}
-
-//外部中断
-void IRQ0_Handler()
-{
-	if (!isDetectingFalling) {
-		isDetectingFalling = true;
-		count = 0;
-		MsTimer2::start();
-	}
-	else {
-		count++;
-	}
-}
-
-//定时任务中断
-void MsTimer2_IRQ_Handler()
-{
-	if (digitalRead(pIR) == LOW) {
-		//取消下降沿计数
-		isDetectingFalling = false;
-		Serial.println(lastCnt + count);
-		//大于阈值, 触发
-		if (lastCnt + count > COUNT_MAX)
-		{
-			digitalWrite(pRelay1, RELAY_ON);
-			Serial.print("(!1z)");
-			lastCnt = 0;
-		}
-		else {
-			lastCnt = count;
-			lastMills = millis();
-		}
-		MsTimer2::stop();
-	}
-}
-```
-
-
-
-## 3 科研：Yolov5
-
-## 4 科研：基于C++17线程池实现
-
