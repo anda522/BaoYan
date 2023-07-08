@@ -451,13 +451,27 @@ MAC实验室
 
 I am very interested in the university's strong academic reputation.（学术荣誉）
 
-I am also excited about the opportunity to learn from experienced members and engage with students who are passionate about their fields. （能够向有经验的人学习，以及和他们一起工作）
+I am also excited about the opportunity to learn from experienced members and engage with them. （能够向有经验的人学习，以及和他们一起工作）
 
 Additionally, I believe that attending the summer camp at XXX University would provide me with a unique and valuable experience that would help me grow both academically and personally.（XXX夏令营给我一种独特有价值的体验，帮我在学术和个人上有成长）
 
 - 在某项目中的工作是什么
 
 - 自我介绍
+
+Hello teachers,
+
+It's my pleasure to participate in this summer camp. My name is Wang Yaqi, a **junior undergraduate student** majoring in Internet of Things at Zhengzhou University. During my three years of undergraduate study, I have built a solid foundation of professional knowledge and gained rich competition and research experience.
+
+In terms of **academic performance**, I have consistently ranked among the top in my major. In the first five semesters, my overall GPA was 3.77, ranking second out of 240 students, and I passed the English CET-6 and CET-4 exams.
+
+In terms of social practice, I served as the head of the ACM laboratory and the president of the Computer Academic Exchange Association, responsible for organizing club activities. These experiences greatly improved my organizational and coordination abilities.
+
+In terms of competitions, I have participated in many competitions and won multiple awards. In the ACM Provincial Competition, I won 3 gold medals and 2 silver medals, and I won a silver medal in the CCPC Guangzhou Station. I also won a third prize in the Group Programming Ladder Tournament and a first prize in the Blue Bridge Cup. I have also participated in the National College Internet of Things Design Competition and won the first prize in the finals. These competition experiences have greatly improved my coding logic and professional skills. I also have a habit of summarizing knowledge and writing blogs, and I have my own blog website, which greatly enhances my summarizing and writing abilities.
+
+In terms of research, I have received related basic research training and have great research potential. I entered the Hanwei Internet of Things Research Institute of Zhengzhou University to study and participated in a multi-scene flame and smoke recognition project based on YOLOv5 under the guidance of a supervisor, responsible for dataset preparation and model training. At the same time, I have independently learned machine learning algorithms such as SVM and have some understanding of deep learning.
+
+I may have some shortcomings, but I believe that I have already possessed a solid core competence in my major and can undertake the research tasks. I believe that with a positive and serious attitude, I will achieve outstanding results in future research. Thank you all!
 
 - 介绍你的家乡
 
@@ -503,9 +517,9 @@ Overall, I believe that a simple thread pool implementation can be a valuable to
 
 - 研究生阶段的规划
 
-For my master plans, I'm really interested  in machine learning and AI. I want to focus on using these technologies to solve real-world problems.
+For my master plans, I'm really **interested  in machine learning and AI**. I want to focus on using these technologies to solve real-world problems.
 
-In the first year, I would solidify my foundational knowledge in my field of study and seek for  research experience under the guidance of mentors.
+In the first year, I would solidify my foundational knowledge in my field of study and gain  research experience under the guidance of mentors.
 
 In my second year, I would pursue research that aligns with my interests and passions. I would like to explore new ideas and make meaningful contributions to my field through  research projects.
 
