@@ -444,26 +444,52 @@ MAC实验室
 
 ## 1 英语
 
-- 最喜欢的课程，为什么
+- 文献翻译
+
+- 介绍一门最喜欢的课程，为什么
 - 为什么选择这个学校 
 
 I am very interested in the university's strong academic reputation.（学术荣誉）
 
 I am also excited about the opportunity to learn from experienced members and engage with students who are passionate about their fields. （能够向有经验的人学习，以及和他们一起工作）
 
-Additionally, I believe that attending the summer camp at Beihang University would provide me with a unique and valuable experience that would help me grow both academically and personally.（北航夏令营给我一种独特有价值的体验，帮我在学术和个人上有成长）
+Additionally, I believe that attending the summer camp at XXX University would provide me with a unique and valuable experience that would help me grow both academically and personally.（XXX夏令营给我一种独特有价值的体验，帮我在学术和个人上有成长）
 
 - 在某项目中的工作是什么
 
-- 文献翻译
+- 自我介绍
 
-1. 自我介绍。
-2. 介绍你的家乡。
-3. 介绍你的学校。
-4. 介绍你的家庭。
-5. 有什么爱好。
-6. 介绍你学过的一门专业课。
-7. 介绍项目。
+- 介绍你的家乡
+
+介绍：I would like to introduce my hometown, Henan. 
+
+位置以及文化：Henan is located in central China, at the lower reaches of the Yellow River. Henan possesses rich **natural resources and cultural heritage**.
+
+历史遗迹：Henan has many historical and cultural sites such as the White Horse Temple in Luoyang, the Shaolin Temple on Songshan Mountain in Zhengzhou, and the ancient city of Kaifeng. 
+
+饮食文化：Henan also has a rich food culture, with famous dishes such as soup with pepper, Henan cuisine, and Henan braised noodles.
+
+In recent years, Henan's economy has shifted from traditional agriculture to modern manufacturing and service industries. 
+
+Thank you for listening to my introduction of Henan, my beloved hometown.
+
+- 介绍你的学校
+
+- 介绍你的家庭
+
+- 有什么爱好
+
+I **enjoy  playing badminton** regularly. It's not only a great way to exercise, but I find it also helps me to **clear my mind and relax.** 
+
+In my free time, I like to **listen to a variety of music songs**, which really relaxes my minds.
+
+I also have a passion for movies and enjoy **watching films** from different countries.
+
+Finally, I love to **read books** such as novels.
+
+These hobbies not only keep me entertained, but they also help me to learn new things and broaden my horizons.
+
+- 介绍项目
 
 Thank you for giving me the opportunity to introduce my project. The project I would like to talk about is a simple thread pool implementation using C++17.（介绍）
 
@@ -473,9 +499,17 @@ One of the main benefits of using a thread pool is that **it can improve the per
 
 Overall, I believe that a simple thread pool implementation can be a valuable tool for anyone developing concurrent applications in C++, and I'm excited to have the opportunity to create one. Thank you for your time!
 
-8. 你对人工智能等问题的看法。
+- 你对人工智能等问题的看法
 
-9. 为什么要来我们学校。
+- 研究生阶段的规划
+
+For my master plans, I'm really interested  in machine learning and AI. I want to focus on using these technologies to solve real-world problems.
+
+In the first year, I would solidify my foundational knowledge in my field of study and seek for  research experience under the guidance of mentors.
+
+In my second year, I would pursue research that aligns with my interests and passions. I would like to explore new ideas and make meaningful contributions to my field through  research projects.
+
+Ultimately, I want to graduate with deep understanding of my field and become an expert in machine learning.
 
 ## 2 数学
 
