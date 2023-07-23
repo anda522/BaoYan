@@ -590,7 +590,7 @@ Ultimately, I want to graduate with deep understanding of my field and become an
 
 # 三、项目科研
 
-## 1 项目：QQ机器人
+## ~~1 项目：QQ机器人（夏令营后删掉该项目）~~
 
 机器人称之为**协议端**
 
@@ -607,6 +607,10 @@ Ultimately, I want to graduate with deep understanding of my field and become an
 
 
 ## 2 项目：高空坠物
+
+老师可能会问到的问题：
+
+- 夏令营时期的简历时，老师会问坠物的识别是怎么做到的，坠物识别是通过硬件来实现的，一般来说下落的物体都是坠物，不存在对应的识别问题，除非下落的物体是一些哺乳动物，需要利用红外热释电传感器进行判断。
 
 ### 模块
 
