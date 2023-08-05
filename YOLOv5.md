@@ -152,13 +152,11 @@ Focus和SPP都是为了增大感受野的操作，不过Focus是通过切片来�
 
 ## 参考
 
-yolo相关面试回答：https://blog.csdn.net/sazass/article/details/126990964
+[1] yolo相关面试回答：https://blog.csdn.net/sazass/article/details/126990964
 
-面试系列总结：https://blog.csdn.net/qq_45445740/article/details/120265713
+[2] 面试系列总结：https://blog.csdn.net/qq_45445740/article/details/120265713
 
-YOLOv5是一种单阶段目标检测算法
-
-目标检测总结：https://zhuanlan.zhihu.com/p/619025023
+[3] 目标检测总结：https://zhuanlan.zhihu.com/p/619025023
 
 # 数据集相关
 
@@ -470,10 +468,12 @@ $$
 
 # 相关参考
 
-- 基于YOLOv5的行人车辆检测论文解读：
+> [3] 和 [4] 我认为是非常详细的讲解YOLOv5的文章，值得一看！
 
-https://qianxu.run/2021/07/02/YOLO-paper/
+[1] 基于YOLOv5的行人车辆检测论文解读： https://qianxu.run/2021/07/02/YOLO-paper/
 
-- YOLOv5上融合多特征的实时火焰检测方法
+[2] YOLOv5上融合多特征的实时火焰检测方法： http://manu46.magtech.com.cn/Jweb_prai/CN/abstract/abstract12396.shtml
 
-http://manu46.magtech.com.cn/Jweb_prai/CN/abstract/abstract12396.shtml
+[3] YOLOv5代码教程（以OneFlow为后端的YOLOv5目标检测项目）：https://start.oneflow.org/oneflow-yolo-doc/index.html
+
+[4] YOLOV5-5.x源码讲解：https://blog.csdn.net/qq_38253797/article/details/119043919
