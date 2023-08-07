@@ -154,9 +154,9 @@ Focus和SPP都是为了增大感受野的操作，不过Focus是通过切片来�
 
 [1] yolo相关面试回答：https://blog.csdn.net/sazass/article/details/126990964
 
-[2] 面试系列总结：https://blog.csdn.net/qq_45445740/article/details/120265713
+[2] YOLO各版本算法总结：https://blog.csdn.net/qq_45445740/article/details/120265713
 
-[3] 目标检测总结：https://zhuanlan.zhihu.com/p/619025023
+[3] 目标检测的评价指标：https://zhuanlan.zhihu.com/p/619025023
 
 # 数据集相关
 
@@ -187,7 +187,7 @@ https://sjcj.nuaa.edu.cn/sjcjycl/article/html/202001003
 
 ![image-20230331212036242](YOLOv5/image-20230331212036242.png)
 
-> https://blog.csdn.net/weixin_43427721/article/details/123613944
+> YOLOv5的Backbone设计：https://blog.csdn.net/weixin_43427721/article/details/123613944
 
 yaml文件中的网络组件不需要进行叠加，只需要在配置文件中设置number即可。
 
@@ -215,7 +215,7 @@ CBS模块其实没什么好稀奇的，就是Conv+BatchNorm（归一化）+SiLU�
 
 ## Neck
 
-https://blog.csdn.net/weixin_43427721/article/details/123653669
+YOLOv5的Neck设计：https://blog.csdn.net/weixin_43427721/article/details/123653669
 
 ![](https://img-blog.csdnimg.cn/bfc40cf6ffb44925b7bc0ade1afe913b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5b-X5oS_5peg5YCm,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 
@@ -226,6 +226,12 @@ FPN就是使用一种 自顶向下的侧边连接在所有尺度上构建出高�
 PAN的结构也不稀奇，FPN中间经过多层的网络后，底层的目标信息已经非常模糊了，因此PAN又加入了自底向上的路线，弥补并加强了定位信息，也就是上图中的b。
 
 高层用来预测大目标，底层用来预测小目标，小目标对应小的anchor
+
+## Head
+
+当输入为640*640时，三个尺度上的特征图分别为：80x80、40x40、20x20
+
+YOLOv5的head设计：https://blog.csdn.net/weixin_43427721/article/details/123668444
 
 # 相关技术
 
@@ -402,6 +408,40 @@ def forward(self, pred, true):
 
 可以采用 `标签平滑` 策略进行缓解，即对原来的标签进行改动，添加一个平滑参数 $\alpha$ ，分类正确时的概率为 $p = 1 - 0.5 \times \alpha$ ，分类不正确时的概率为 $p = 0.5 \times \alpha$ ，也就是对分类准确做了惩罚，抑制了过拟合的效果。
 
+## 3 Focal Loss
+
+$$
+FL(p_t) = - \alpha _t (1 - p_t) ^ \gamma log(p_t) \\
+p_t = 
+\begin{cases}
+p, & y = 1 \\
+1 - p, & 其他
+\end{cases} \\
+\alpha_t = \begin{cases}
+\alpha, & y = 1(正样本) \\
+1 - \alpha, & 其他(负样本)
+\end{cases}
+$$
+
+其中 $\alpha_t$ 来协调正负样本之间的平衡， $\gamma$ 来降低简单样本的权重，使损失函数更加关注困难样本。论文中 $\alpha_t = 0.25, \gamma = 2$ 效果较好
+
+两个参数的具体值很难定义，需要调参，调的不好效果可能很差。
+
+`Focal Loss` 在代码中用来代替 `BCEcls, BCEobj` 
+
+##  4 其他
+
+生成训练目标的具体步骤和原理如下：
+
+1. 网格划分：将输入图像划分为固定大小的网格。每个网格负责检测一个或多个目标。
+2. 标签匹配：对于每个目标标签，找到与其IoU（Intersection over Union）最高的网格。如果IoU高于阈值，则将该目标标签分配给该网格。
+3. Anchor Box 匹配：对于每个网格，将其与一组预定义的锚框（Anchor Box）进行匹配。匹配的过程是通过计算锚框与目标的IoU得分来确定的。
+4. 计算目标框偏移和尺寸：对于每个匹配的锚框，计算其与目标之间的偏移量和尺寸比例。这些偏移和比例信息用于后续的目标检测损失计算。
+5. 生成训练目标：根据匹配的目标标签、置信度（用于指示预测框是否包含目标）和目标框的偏移/尺寸信息，生成每个锚框的训练目标。
+6. 重复以上步骤：对于图像中的所有目标标签，重复执行上述步骤，直到为每个网格匹配或分配了目标标签。
+
+生成训练目标的目的是为了定义模型的训练目标，使其能够学习准确地预测目标的类别和位置。通过与目标标签匹配和计算目标框的偏移/尺寸信息，训练目标提供了模型所需的目标检测任务的标签和目标信息。
+
 > 交叉熵损失函数介绍：https://blog.csdn.net/qq_38253797/article/details/116225218
 >
 > 损失函数 `loss.py` 源码文件解读：https://blog.csdn.net/qq_38253797/article/details/119444854
@@ -512,12 +552,13 @@ $$
 > 解决：
 >
 > - 数据集增加大量不存在火焰目标的背景图，同时增加大量易混疑似火焰数据集，如朝霞，夕阳，室内灯光，车灯等，提高模型的泛化性能
+> - 对类别不均衡对 `loss` 的贡献进行控制，即增加控制权重
 
 - 火焰样本小目标较少，大目标较多
 
 > 解决：
 >
-> - 计算样本权重，加大模型对小样本的关注问题，缓解数据不均衡问题
+> - 增大样本的控制权重，加大模型对小样本的关注问题，增大大特征图（检测小目标）的损失系数，让模型更注重小目标的检测
 > - 增大小样本数据量，采用数据增强方法（随机缩放，增加了小目标），使用缩放旋转等方式增强数据集
 
 - 简单样本小，困难样本多（对于预测的难易度）
