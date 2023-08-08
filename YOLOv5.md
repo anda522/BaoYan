@@ -187,11 +187,21 @@ https://sjcj.nuaa.edu.cn/sjcjycl/article/html/202001003
 
 ![image-20230331212036242](YOLOv5/image-20230331212036242.png)
 
+BackBone完成主要的特征信息的提取
+
+对于shortcut是可根据任务要求设置的，在backbone中 `shortcut=True` ，neck中 `shortcut=False`
+
 > YOLOv5的Backbone设计：https://blog.csdn.net/weixin_43427721/article/details/123613944
 
 yaml文件中的网络组件不需要进行叠加，只需要在配置文件中设置number即可。
 
-CBS模块其实没什么好稀奇的，就是Conv+BatchNorm（归一化）+SiLU（用sigmoid激活）
+## CBS
+
+`CBS = Conv + BatchNorm + SiLU`
+
+`BatchNorm` ：批规范化，对数据做批规范化，使数据满足均值为0方差为1的正态分布。主要作用是缓解训练中的梯度消失和爆炸现象，加快模型训练速度。
+
+`SiLU` ：用sigmoid作为激活函数
 
 ## CSP
 
@@ -200,6 +210,7 @@ CBS模块其实没什么好稀奇的，就是Conv+BatchNorm（归一化）+SiLU�
 ![](https://img-blog.csdnimg.cn/cbfea02735b2408193de3eb3be2ad396.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5b-X5oS_5peg5YCm,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 
 为了能让深层次的网络模型达到更好的训练效果，残差网络中提出的残差映射替换了以往的基础映射。对于输入x，期望输出H(x)，网络利用恒等映射将x作为初始结果，将原来的映射关系变成F(x)+x。与其让多层卷积去近似估计H(x) ，不如近似估计H(x)-x，即近似估计残差F(x)。因此，ResNet相当于将学习目标改变为目标值H(x)和x的差值，后面的训练目标就是要将残差结果逼近于0。
+
 残差模块有什么好处呢？
 
 > 1.梯度弥散方面。加入ResNet中的shortcut结构之后，在反传时，每两个block之间不仅传递了梯度，还加上了求导之前的梯度，这相当于把每一个block中向前传递的梯度人为加大了，也就会减小梯度弥散的可能性。
@@ -207,17 +218,17 @@ CBS模块其实没什么好稀奇的，就是Conv+BatchNorm（归一化）+SiLU�
 
 **在resnet中，人们可以使用带有shortcut的残差模块搭建几百层甚至上千层的网络，而浅层的残差模块被命名为Basicblock（18、34），深层网络所使用的的残差模块，就被命名为了Bottleneck（50+）。**
 
-## SPPF
+## SSPF
 
 ![](https://img-blog.csdnimg.cn/7136b20c799342f6a458d42939470e64.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5b-X5oS_5peg5YCm,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
+SSPF模块将经过CBS的x、一次池化后的y1、两次池化后的y2和3次池化后的self.m(y2)先进行拼接，然后再CBS提取特征。 
 
 这一模块的主要作用是对高层特征进行提取并融合，在融合的过程中作者多次运用最大池化，尽可能多的去提取高层次的语义特征。
 
 ## Neck
 
-YOLOv5的Neck设计：https://blog.csdn.net/weixin_43427721/article/details/123653669
-
-![](https://img-blog.csdnimg.cn/bfc40cf6ffb44925b7bc0ade1afe913b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5b-X5oS_5peg5YCm,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+![](https://img-blog.csdnimg.cn/bfc40cf6ffb44925b7bc0ade1afe913b.png)
 
 Neck的网络结构设计也是沿用了**FPN+PAN的结构**
 
@@ -226,6 +237,8 @@ FPN就是使用一种 自顶向下的侧边连接在所有尺度上构建出高�
 PAN的结构也不稀奇，FPN中间经过多层的网络后，底层的目标信息已经非常模糊了，因此PAN又加入了自底向上的路线，弥补并加强了定位信息，也就是上图中的b。
 
 高层用来预测大目标，底层用来预测小目标，小目标对应小的anchor
+
+YOLOv5的Neck设计：https://blog.csdn.net/weixin_43427721/article/details/123653669
 
 ## Head
 
