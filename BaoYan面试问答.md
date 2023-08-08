@@ -4,7 +4,7 @@
 
 - 2023届
 
-![image-20230327213915915](BaoYan经验/image-20230327213915915.png)
+![image-20230327213915915](BaoYan面试问答/image-20230327213915915.png)
 
 》》》2019《《《
 
@@ -312,7 +312,7 @@
 
 ## 3 吉大
 
-![image-20230329105859246](BaoYan经验/image-20230329105859246.png)
+![image-20230329105859246](BaoYan面试问答/image-20230329105859246.png)
 
 ## 4 南大
 
@@ -528,6 +528,9 @@ MAC实验室
 - 文献翻译
 
 - 介绍一门最喜欢的课程，为什么
+
+"Algorithms and Data Structures" is my favorite course. It covers fundamental concepts in designing efficient algorithms and organizing data. I learned various data structures and crucial algorithms such as stack, queue and graph. This course greatly improves my problem-solving skills. And I think the practice and analysis are very fascinating. Overall, it has been a rewarding experience as I learned a great deal from it.
+
 - 为什么选择这个学校 
 
 I am very interested in the university's strong academic reputation.（学术荣誉）
@@ -536,23 +539,20 @@ I am also excited about the opportunity to learn from experienced members and en
 
 Additionally, I believe that attending the summer camp at XXX University would provide me with a unique and valuable experience that would help me grow both academically and personally.（XXX夏令营给我一种独特有价值的体验，帮我在学术和个人上有成长）
 
-- 在某项目中的工作是什么
-
 - 自我介绍
+
 
 Hello teachers,
 
-It's my pleasure to participate in this summer camp. My name is Wang Yaqi, a **junior undergraduate student** majoring in Internet of Things at Zhengzhou University. During my three years of undergraduate study, I have built a solid foundation of professional knowledge and gained rich competition and research experience.
+I am very glad to participate in this summer camp. My name is Wang Yaqi. And I’m a **junior undergraduate student** majoring in Internet of Things at Zhengzhou University. During my three years of study, I’ve built a solid foundation and gained rich competition and research experience.
 
-In terms of **academic performance**, I have consistently ranked among the top in my major. In the first five semesters, my overall GPA was 3.77, ranking second out of 240 students, and I passed the English CET-6 and CET-4 exams.
+In terms of **academic performance**, my overall GPA was 3.78 in the first six semesters, ranking second out of 240 students. And I also passed the English CET-4 and CET-6 exams and received the National Inspiration Scholarship and other honors. And I’m operating my blog websites where I published 350 blogs with a total of 400,000 views.  
 
-In terms of social practice, I served as the head of the ACM laboratory and the president of the Computer Academic Exchange Association, responsible for organizing club activities. These experiences greatly improved my organizational and coordination abilities.
+In terms of competition experience, I served as the vice captain of the ACM training team and the president of the Computer Academic Exchange Association. I have received multiple awards in ACM competitions. As a team leader, I led my team to win 3 gold medals in the Henan Provincial ACM Competition. And I have also achieved a silver medal in the ACM Regional Contest and the third prize in the Group Programming Ladder Tournament which greatly improved my programming skills. 
 
-In terms of competitions, I have participated in many competitions and won multiple awards. In the ACM Provincial Competition, I won 3 gold medals and 2 silver medals, and I won a silver medal in the CCPC Guangzhou Station. I also won a third prize in the Group Programming Ladder Tournament and a first prize in the Blue Bridge Cup. I have also participated in the National College Internet of Things Design Competition and won the first prize in the finals. These competition experiences have greatly improved my coding logic and professional skills. I also have a habit of summarizing knowledge and writing blogs, and I have my own blog website, which greatly enhances my summarizing and writing abilities.
+In terms of research, I entered the Hanwei Internet of Things Research Institute. Under the guidance of a supervisor, I participated in a multi-scene fire recognition project based on YOLOv5, responsible for dataset preparation and model training. I also have learned machine learning algorithms such as SVM and have some understanding of deep learning, accumulating rich practical experience and technical skills.
 
-In terms of research, I have received related basic research training and have great research potential. I entered the Hanwei Internet of Things Research Institute of Zhengzhou University to study and participated in a multi-scene flame and smoke recognition project based on YOLOv5 under the guidance of a supervisor, responsible for dataset preparation and model training. At the same time, I have independently learned machine learning algorithms such as SVM and have some understanding of deep learning.
-
-I may have some shortcomings, but I believe that I have already possessed a solid core competence in my major and can undertake the research tasks. I believe that with a positive and serious attitude, I will achieve outstanding results in future research. Thank you all!
+Lastly, I believe that my solid foundation enables me to face various challenges. I will keep working hard and improve my overall skills for outstanding achievements in research. Thank you again for listening.
 
 - 介绍你的家乡
 
@@ -586,15 +586,13 @@ These hobbies not only keep me entertained, but they also help me to learn new t
 
 - 介绍项目
 
+《基于YOLOv5的多场景火灾检测系统》
 
+I entered the Hanwei Internet of Things Research Institute. Under the guidance of a supervisor, I participated in a multi-scene fire recognition project based on YOLOv5, responsible for dataset preparation and model training. I also have learned machine learning algorithms such as SVM and have some understanding of deep learning, accumulating rich practical experience and technical skills. Thank you for listening.
 
-Thank you for giving me the opportunity to introduce my project. The project I would like to talk about is a simple thread pool implementation using C++17.（介绍）
+《预防高空坠物及保护系统》
 
-A thread pool is a used technique in concurrent programming, where **a group of threads are created and managed to execute a large number of tasks.** In my implementation, I created a set of worker threads that are managed by a thread pool manager. The manager receives tasks from a task queue and assigns them to available worker threads, which then execute the tasks and return the results.（过程）
-
-One of the main benefits of using a thread pool is that **it can improve the performance of applications**. （益处）
-
-Overall, I believe that a simple thread pool implementation can be a valuable tool for anyone developing concurrent applications in C++, and I'm excited to have the opportunity to create one. Thank you for your time!
+I participate in a project named "Prevention of Falling Objects and Protection System". The project aimed to prevent falling objects and ensure safety through the integration of microwave sensors, infrared sensors, and mechanical devices. I was responsible for developing the Arduino control module. At last We successfully implemented features such as falling object interception and event notifications. And Our project received the First Prize in the National Final Contest. Thank you for listening.
 
 - 你对人工智能等问题的看法
 
@@ -664,12 +662,13 @@ Ultimately, I want to graduate with deep understanding of my field and become an
 
 ## 4 项目论文
 
-![image-20230325113105251](BaoYan经验/image-20230325113105251.png)
-
-- 数据集来源
-- 负责是什么
+- 项目的数据集来源是什么？
+- 你具体负责的工作是什么？
 - 算法原理
 - 为什么选择这个算法，比较了吗？
+- 你从这个项目中学到了什么？
+- **哪个项目让你印象最深刻？** 
+- 你们项目有没有达到预期目标，考虑过怎么改进没有？
 
 ## 5 老师提问
 
