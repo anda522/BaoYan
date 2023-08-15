@@ -596,6 +596,10 @@ I participate in a project named "Prevention of Falling Objects and Protection S
 
 - 你对人工智能等问题的看法
 
+- 对机器学习的认识
+
+Machine learning is like teaching computers to learn stuff on their own without us. We didn't tell them exactly what to do. It just like that we use math to analyze a bunch of data and then make decisions based on what we've learned. You know, it's like when you show a computer a bunch of pictures of cats, and it figures out how to recognize cats in new pictures even if you didn't explicitly tell it what a cat looks like. Machine learning is used in all sorts of cool things like self-driving cars, voice assistants, and even personalized recommendations on bilibili. As a grad student, I'm super excited to dig deeper into stuff like deep learning. It's a really fascinating field, and I can't wait to contribute to it!
+
 - 研究生阶段的规划
 
 For my master plans, I'm really **interested  in machine learning and AI**. I want to focus on using these technologies to solve real-world problems.
